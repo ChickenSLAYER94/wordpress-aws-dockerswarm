@@ -1,8 +1,6 @@
 # WordPress Application on AWS using Docker Swarm
 
-This project aims to deploy a WordPress application on AWS using Docker Swarm. Docker Swarm is a powerful container orchestration tool that allows for the seamless deployment and management of containerized applications at scale. When combined with AWS services, it creates a robust and scalable environment for hosting WordPress applications.
-
-## Highlight
+This project aims to deploy a WordPress application on AWS using Docker Swarm. Docker Swarm is a powerful container orchestration tool that allows for the seamless deployment and management of containerized applications at scale. When combined with AWS services, it creates a robust and scalable environment for hosting WordPress applications.<br>
 
 The following information serves as a comprehensive guide to deploying the WordPress application and showcases the key benefits of utilizing Docker Swarm and cloud architecture. These benefits include:
 
@@ -30,9 +28,9 @@ The following information serves as a comprehensive guide to deploying the WordP
     sudo docker swarm init --advertise-addr <ip-address-of-node>
     ```
 
-    Note: The output will provide a "docker swarm join" command that should be executed on the worker nodes. Prior to that, ensure that port 2377 is allowed inbound on the manager node's security group.
+    Note: The output will provide a "docker swarm join ..." command that should be executed on the worker nodes. Prior to that, ensure that port 2377 is allowed in inbound rule on the manager node's security group.
 
-4. **Create Worker Nodes**: Connect to each worker node separately and execute the "docker swarm join" command obtained from the manager node.
+4. **Create Worker Nodes**: Connect to each worker node separately and execute the "docker swarm join ..." command obtained from the manager node.
 
 5. **Check Node Status**: Use the following command on the manager node to verify the status of all nodes:
 
@@ -40,7 +38,7 @@ The following information serves as a comprehensive guide to deploying the WordP
     sudo docker node ls
     ```
 
-6. **Secure the Application with Secrets and Network Encryption**: Implement secrets and network encryption to enhance application security. To use secrets in Docker Compose, modify the docker-compose file as follows:
+6. **Secure the Application with Secrets and Network Encryption**: Implement secrets and network encryption to enhance application security. To use secrets in Docker Compose, modify the docker-compose-swarm.yml file as follows:
 ```
 ...
 MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
@@ -53,14 +51,13 @@ secrets:
 ...
 ```
 
-Secrets in Docker Compose are used to securely store passwords. Two files should be created in the manager node with the names `db_password.txt` and `db_root_password.txt` that hold the passwords. 
+Secrets in Docker Compose are used to securely store passwords. Two files should be created in the manager node with the names `db_password.txt` and `db_root_password.txt` that hold the passwords. <br>
 Creating an encrypted network in the manager node:
 Use the command:
 ```bash
 sudo docker network create --opt encrypted -d overlay my-wordpress-network
 ```
-Using an externally created encrypted network "my-wordpress-network":
-In the docker-compose file, add the following:
+Using an externally created encrypted network "my-wordpress-network".<br>
 Code portion in yml file:
 ```
 ...
