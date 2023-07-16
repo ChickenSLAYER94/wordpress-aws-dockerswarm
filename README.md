@@ -41,7 +41,7 @@ The following information serves as a comprehensive guide to deploying the WordP
     ```
 
 6. **Secure the Application with Secrets and Network Encryption**: Implement secrets and network encryption to enhance application security. To use secrets in Docker Compose, modify the docker-compose file as follows:
-<!---
+<kbd>
 ...
 MYSQL_ROOT_PASSWORD_FILE: /run/secrets/db_root_password
 MYSQL_DATABASE: wordpress
@@ -51,7 +51,7 @@ secrets:
   - db_root_password
   - db_password
 ...
---->
+</kbd>
 
 Secrets in Docker Compose are used to securely store passwords. Two files should be created in the manager node with the names `db_password.txt` and `db_root_password.txt` that hold the passwords. 
 Creating an encrypted network in the manager node:
